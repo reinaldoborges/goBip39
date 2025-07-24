@@ -1,8 +1,11 @@
 package main
 
 import (
+    "bufio"
     "fmt"
     "goBip39/pkg"
+    "os"
+    "strings"
 )
 
 func main() {
@@ -18,4 +21,37 @@ func main() {
 
     intStr := pkg.IntToString(num)
     fmt.Printf("Converted integer %d back to string: '%s'\n", num, intStr)
+
+    fmt.Print("Enter a word to search: ")
+    var input string
+    fmt.Scanln(&input)
+    input = strings.TrimSpace(input)
+
+    file, err := os.Open("./data/english.txt")
+    if err != nil {
+        fmt.Printf("Error opening file: %v\n", err)
+        return
+    }
+    defer file.Close()
+
+    scanner := bufio.NewScanner(file)
+    found := false
+    lineNumber := 1
+    for scanner.Scan() {
+        if strings.TrimSpace(scanner.Text()) == input {
+            fmt.Printf("Word '%s' found at line %d\n", input, lineNumber)
+            found = true
+            break
+        }
+        lineNumber++
+    }
+
+    if err := scanner.Err(); err != nil {
+        fmt.Printf("Error reading file: %v\n", err)
+        return
+    }
+
+    if !found {
+        fmt.Printf("Word '%s' not found in the list\n", input)
+    }
 }
