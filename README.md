@@ -2,6 +2,14 @@
 
 This is a simple Golang project that demonstrates the structure and organization of a Go application.
 
+This program receives a word from [BIP-0039](https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md) and return the number (minus 1, to keep it in the range 0-2047).
+
+Or receive an hexadecimal number and return the correspondent word (again, in the range 0-2047).
+
+All the code was created by Copilot plugin inside VSCode.
+
+There is a build script to generate the executable in the folder `dist`
+
 ## Project Structure
 
 ```
