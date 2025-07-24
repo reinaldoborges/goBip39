@@ -2,34 +2,28 @@ package main
 
 import (
     "bufio"
+    "embed"
     "fmt"
-    "goBip39/pkg"
-    "os"
     "strings"
 )
 
-func main() {
-    fmt.Println("Welcome to my Golang project!")
-    // Example usage of utility functions
-    str := "123"
-    num, err := pkg.StringToInt(str)
-    if err != nil {
-        fmt.Printf("Error converting string to int: %v\n", err)
-        return
-    }
-    fmt.Printf("Converted string '%s' to integer: %d\n", str, num)
+//go:embed data/english.txt
+var englishTxt embed.FS
 
-    intStr := pkg.IntToString(num)
-    fmt.Printf("Converted integer %d back to string: '%s'\n", num, intStr)
+func main() {
+    fmt.Println("Welcome to the BIP39 word search tool!")
+    fmt.Println("You can search for a word or a hexadecimal line number in the BIP39 English word list.")
+    fmt.Println("To search for a word, type the word (or the first 4 characters of it).")
+    fmt.Println("To search for a line number, type the line number in hexadecimal format (e.g., 0x001).\n")
 
     fmt.Print("Enter a word or hex line number to search: ")
     var input string
     fmt.Scanln(&input)
     input = strings.TrimSpace(input)
 
-    file, err := os.Open("./data/english.txt")
+    file, err := englishTxt.Open("data/english.txt")
     if err != nil {
-        fmt.Printf("Error opening file: %v\n", err)
+        fmt.Printf("Error opening embedded file: %v\n", err)
         return
     }
     defer file.Close()
