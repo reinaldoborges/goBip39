@@ -39,7 +39,7 @@ func main() {
     lineNumber := 1
     for scanner.Scan() {
         if strings.TrimSpace(scanner.Text()) == input {
-            fmt.Printf("Word '%s' found at line %d\n", input, lineNumber)
+            fmt.Printf("Word '%s' found at line 0x%03X\n", input, lineNumber-1)
             found = true
             break
         }
