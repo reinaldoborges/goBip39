@@ -1,0 +1,21 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go coverage tool
+*.coverprofile
+
+# Dependency directories (remove the comment below if you use Go modules)
+vendor/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Go build
+dist/
