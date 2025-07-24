@@ -1,4 +1,4 @@
-# My Golang Project
+# goBip39
 
 This is a simple Golang project that demonstrates the structure and organization of a Go application.
 
@@ -46,6 +46,12 @@ To get started with this project, follow these steps:
    ```
    go run cmd/main.go
    ```
+
+5. Build the application:
+   ```
+   ./build.sh
+   ```
+
 
 ## Utilities
 

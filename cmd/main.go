@@ -16,10 +16,12 @@ func main() {
     fmt.Println("You can search for a word or a hexadecimal line number in the BIP39 English word list.")
     fmt.Println("To search for a word, type the word (or the first 4 characters of it).")
     fmt.Println("To search for a line number, type the line number in hexadecimal format (e.g., 0x001).\n")
+    fmt.Println("Note: The search is case-insensitive and will only match the first 4 characters of longer words.\n")
+    fmt.Println("### Press Enter without typing anything to QUIT ###\n")
 
     reader := bufio.NewReader(os.Stdin)
     for {
-        fmt.Print("Enter a word or hex line number to search (empty to exit): ")
+        fmt.Print("> ")
         input, _ := reader.ReadString('\n')
         input = strings.TrimSpace(input)
         if input == "" {
@@ -49,7 +51,7 @@ func main() {
             for scanner.Scan() {
                 if currentLine == lineNum {
                     word := strings.TrimSpace(scanner.Text())
-                    fmt.Printf("Line 0x%03X: %s\n", lineNum, word)
+                    fmt.Printf("0x%03X: %s\n", lineNum, word)
                     found = true
                     break
                 }
@@ -77,7 +79,7 @@ func main() {
                 compareLine = line[:4]
             }
             if compareLine == compareInput {
-                fmt.Printf("Word '%s' found at line 0x%03X\n", input, lineNumber-1)
+                fmt.Printf("0x%03X: %s\n", lineNumber-1, line)
                 found = true
                 break
             }
