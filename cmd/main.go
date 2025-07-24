@@ -38,7 +38,16 @@ func main() {
     found := false
     lineNumber := 1
     for scanner.Scan() {
-        if strings.TrimSpace(scanner.Text()) == input {
+        line := strings.TrimSpace(scanner.Text())
+        compareInput := input
+        compareLine := line
+        if len(input) > 4 {
+            compareInput = input[:4]
+        }
+        if len(line) > 4 {
+            compareLine = line[:4]
+        }
+        if compareLine == compareInput {
             fmt.Printf("Word '%s' found at line 0x%03X\n", input, lineNumber-1)
             found = true
             break
